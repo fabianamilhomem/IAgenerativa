@@ -27,4 +27,6 @@ jobs:
         run: echo "OPEN_API_KEY=${{ secrets.OPEN_API_KEY }}" >> $GITHUB_ENV
 
       - name: Executar teste do sistema
-        run: python test_rag.py
+        run: |
+          export PYTHONPATH=$PYTHONPATH:$(pwd)
+          python src/audit_generator.py
