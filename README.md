@@ -11,11 +11,11 @@ streamlit run app_streamlit.py
 
 ## Tecnologias Utilizadas
 
-* [cite_start]**LLM:** Llama-3.1-8B-Instruct (via Hugging Face API)[cite: 101, 103].
-* [cite_start]**Embeddings:** `all-MiniLM-L6-v2` (Sentence Transformers)[cite: 73, 74].
-* [cite_start]**Vector DB:** ChromaDB (Persistência local)[cite: 78, 101].
-* [cite_start]**Orquestração:** LangChain[cite: 79, 132].
-* [cite_start]**Interface:** Streamlit[cite: 93].
+**LLM:** Llama-3.1-8B-Instruct (via Hugging Face API)[cite: 101, 103].
+**Embeddings:** `all-MiniLM-L6-v2` (Sentence Transformers)[cite: 73, 74].
+**Vector DB:** ChromaDB (Persistência local)[cite: 78, 101].
+**Orquestração:** LangChain[cite: 79, 132].
+**Interface:** Streamlit[cite: 93].
 --- 
 
 ## Estrutura do Projeto e Funções dos Arquivos
