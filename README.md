@@ -2,6 +2,13 @@
 
 Este sistema aplica técnicas de Inteligência Artificial, com uso de Modelos de Linguagem de Grande Escala (LLM) e abordagem RAG (Retrieval-Augmented Generation), para automatizar a elaboração de **Programas de Auditoria** e **Matrizes de Planejamento** para o TJDFT.
 
+## Execução Rápida
+
+git clone https://github.com/fabianamilhomem/IAgenerativa.git
+cd IAgenerativa
+pip install -r requirements.txt
+streamlit run app_streamlit.py
+
 ## Tecnologias Utilizadas
 
 * [cite_start]**LLM:** Llama-3.1-8B-Instruct (via Hugging Face API)[cite: 101, 103].
