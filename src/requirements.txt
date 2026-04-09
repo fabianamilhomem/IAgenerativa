@@ -1,0 +1,21 @@
+# Interface e Servidor
+streamlit
+
+# Manipulação de Dados e Documentos
+pandas
+openpyxl
+python-docx
+pymupdf
+
+# IA e Processamento de Linguagem Natural (NLP)
+huggingface_hub
+openai
+langchain
+langchain-community
+langchain-huggingface
+langchain-chroma
+chromadb
+sentence-transformers
+
+# Utilidades
+python-dotenv

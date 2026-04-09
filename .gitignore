@@ -1,0 +1,30 @@
+# ---- Sistema / editor ----
+.vscode/
+.DS_Store
+Thumbs.db
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pkl
+*.pickle
+*.egg-info/
+
+# ---- Ambientes virtuais ----
+venv/
+.venv/
+
+# ---- Logs e temporários ----
+*.log
+logs/
+tmp/
+temp/
+
+# ---- Arquivos sensíveis ----
+.env
+*.env
+cache/
+data/
+projects/
