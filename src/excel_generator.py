@@ -205,13 +205,8 @@ TRECHOS DE NORMAS RECUPERADOS PELO RAG:
 {item["contexto_normas"]}
 --------------------------------
 """
-        cache = buscar_cache(prompt)
-        if cache:
-            print("Resposta da matriz recuperada do cache.")
-            resposta = cache
-        else:
-            resposta = chamar_llm(prompt)
-            salvar_cache(prompt, resposta)
+        # Forçando a geração sempre nova (ignorando cache)
+        resposta = chamar_llm(prompt)
 
         try:
             # Usamos a função robusta que já limpa caracteres invisíveis e aspas mal formatadas
@@ -228,6 +223,18 @@ TRECHOS DE NORMAS RECUPERADOS PELO RAG:
         except Exception as e:
             print("\nErro ao interpretar resposta do LLM no Excel Generator.")
             print(f"Erro técnico: {e}")
+            
+            # RECUPERAÇÃO DE EMERGÊNCIA (Salva a apresentação se o JSON vier sujo)
+            import json, re
+            try:
+                match = re.search(r'\[\s*\{.*?\}\s*\]', resposta, re.DOTALL)
+                if match:
+                    resultados_lote = json.loads(match.group(0), strict=False)
+                    resultados.extend(resultados_lote)
+                    continue
+            except:
+                pass
+            
             # Em vez de travar toda a aplicação, adiciona campos vazios para este lote
             for _ in lote:
                 resultados.append({

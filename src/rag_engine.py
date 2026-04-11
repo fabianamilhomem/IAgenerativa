@@ -7,6 +7,7 @@
 import os
 import json
 import re
+import shutil
 
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -154,16 +155,35 @@ def load_vector_db(vector_db_path):
 
         return None
 
-    embeddings = HuggingFaceEmbeddings(
-        model_name=EMBEDDING_MODEL
-    )
+    try:
+        embeddings = HuggingFaceEmbeddings(
+            model_name=EMBEDDING_MODEL
+        )
 
-    db = Chroma(
-        persist_directory=vector_db_path,
-        embedding_function=embeddings
-    )
+        db = Chroma(
+            persist_directory=vector_db_path,
+            embedding_function=embeddings
+        )
 
-    return db
+        return db
+    except BaseException as e:
+        print(f"\n[Aviso] Banco vetorial corrompido ou incompatível em {vector_db_path}.")
+        print(f"Detalhes do erro: {e}")
+        print("Removendo o banco corrompido para recriar do zero...")
+        
+        import gc
+        gc.collect() # Tenta liberar os arquivos vetoriais travados na memória do Windows
+        
+        try:
+            if os.path.exists(vector_db_path):
+                shutil.rmtree(vector_db_path)
+        except Exception as e_rm:
+            print(f"Falha ao remover a pasta automaticamente: {e_rm}")
+            raise RuntimeError(
+                f"O banco de dados vetorial em '{vector_db_path}' está corrompido e travado no Windows. "
+                "Por favor, feche este terminal (Ctrl+C), apague a pasta manualmente e inicie a aplicação novamente."
+            )
+        return None
 
 # ==============================================================
 # GARANTIR BASE VETORIAL

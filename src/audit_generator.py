@@ -135,10 +135,12 @@ def extrair_json(texto):
 # ==============================================================
 def chamar_llm(prompt):
     prompt = prompt[:12000]
-    resposta_cache = buscar_cache(prompt)
-    if resposta_cache:
-        print("\nResposta recuperada do cache.\n")
-        return resposta_cache
+    
+    # DESATIVADO TEMPORARIAMENTE PARA A APRESENTAÇÃO:
+    # resposta_cache = buscar_cache(prompt)
+    # if resposta_cache:
+    #     print("\nResposta recuperada do cache.\n")
+    #     return resposta_cache
 
     for tentativa in range(5):
         try:
@@ -183,7 +185,8 @@ def chamar_llm(prompt):
             if inicio != -1 and fim != -1:
                 texto = texto[inicio:fim+1]
 
-            salvar_cache(prompt, texto)
+            # SALVAMENTO DESATIVADO TEMPORARIAMENTE
+            # salvar_cache(prompt, texto)
             return texto
 
         except HfHubHTTPError as e:
